@@ -7,15 +7,7 @@ ContentBinding.prototype = Object.create(Binding.prototype);
 function ContentBinding(element,model,scope){
   Binding.apply(this,arguments);
 }
-ContentBinding.prototype.updateBinding = function(){
-  var boundTo = this.element.getAttribute('crochet-binding');
-  try {
-    var value = this.getModelField(boundTo);
-  }catch(e){
-    alert(e.message);
-    return;
-  }
-  console.log("value is ", value , this.element , this.model);
+ContentBinding.prototype.updateBinding = function(value){
   this.element.textContent = value;
 }
 
