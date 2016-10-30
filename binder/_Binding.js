@@ -12,17 +12,17 @@ Binding.prototype.bindUpdates = function(){
   this.scope.addEventListener('crochet:update:'+this.binding,this.updateListener.bind(this),true);
   this.scope.addEventListener('crochet:modelChange',this.changeModel.bind(this));
   this.scope.addEventListener('crochet:modelRefresh',this.refreshModel.bind(this));
-}
+};
 Binding.prototype.changeModel = function(evt){
   if(evt.detail.model === this.model || evt.detail.previousModel === this.model){
     this.updateBinding();
   }
-}
+};
 Binding.prototype.refreshModel = function(evt){
   if(evt.detail.model === this.model){
     this.updateBinding();
   }
-}
+};
 Binding.prototype.updateListener = function(evt){
   if(evt.detail.model !== this.model || evt.detail.binding !== this.binding || evt.detail.originElement === this.element){
     return;
@@ -36,7 +36,7 @@ Binding.prototype.updateListener = function(evt){
 };
 Binding.prototype.setAction = function(_action){
   this.action = _action;
-}
+};
 Binding.prototype.getModelField = function(){
   var field = "get" + this.binding.charAt(0).toUpperCase() + this.binding.slice(1);
   var candidate = this.model[field];
@@ -67,6 +67,6 @@ Binding.prototype.broadcast = function(){
   var detail = {model:this.model,binding:this.binding,originElement:this.element};
   var event = new CustomEvent('crochet:update:'+this.binding,{detail:detail});
   this.scope.dispatchEvent(event);
-}
+};
 
 module.exports = Binding;
